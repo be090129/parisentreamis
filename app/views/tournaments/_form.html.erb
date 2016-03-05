@@ -1,0 +1,47 @@
+<%= form_for(@tournament) do |f| %>
+  <% if @tournament.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+
+      <ul>
+      <% @tournament.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row">
+      <div class='col-md-4'>
+        <%= f.label :name %><br>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+      <div class='col-xs-6'><br />
+        <div class="input-group input-daterange"  id="datepickermulti">
+          <%= f.text_field :start_date, autofocus: true, class: "form-control" %>
+          <span class="input-group-addon">to</span>
+          <%= f.text_field :end_date, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+      <div class='col-md-2'>
+        <%= f.label :private %><br>
+        <%= f.check_box :private %>
+      </div>
+    </div><br />
+
+    <div class="row">
+      <div class='col-md-2 col-md-offset-10'>
+        <%= link_to 'Retour', tournaments_path, class: "btn btn-primary" %>
+        <%= f.submit "Valider", class: "btn btn-success" %>
+      </div>
+    </div>
+
+<% end %>
+
+<script>
+  $(function(){$("#datepickermulti").datepicker({
+    format: "yyyy-mm-dd",
+    autoclose: true,
+  });
+  });
+</script>
