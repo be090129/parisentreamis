@@ -13,6 +13,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails', '~> 5.2'
 gem 'bootstrap-datepicker-rails'
+gem 'nested_form'
+
 
 
 group :development, :test do

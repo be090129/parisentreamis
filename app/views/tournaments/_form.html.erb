@@ -1,4 +1,4 @@
-<%= form_for(@tournament) do |f| %>
+<%= nested_form_for(@tournament) do |f| %>
   <% if @tournament.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
@@ -28,6 +28,34 @@
         <%= f.check_box :private %>
       </div>
     </div><br />
+
+
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
+      <li class="active"><a href="#teamplayer" role="tab" data-toggle="tab">Teams and players</a></li>
+      <li><a href="#bets" role="tab" data-toggle="tab">Bets</a></li>
+    </ul>
+
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="teamplayer">
+        <div class="row">
+          <div class='col-md-12'><br />
+            <%= f.fields_for :teams do |task_form| %>
+                <%= render 'team_fields', :f => task_form %>
+            <% end %>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class='col-md-12'>
+            <p><%= f.link_to_add "Add a team", :teams, class: "btn btn-success" %></p>
+          </div>
+        </div><br />
+      </div>
+      <div class="tab-pane active" id="bets">
+
+      </div>
+    </div>
 
     <div class="row">
       <div class='col-md-2 col-md-offset-10'>

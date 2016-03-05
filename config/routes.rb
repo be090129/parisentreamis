@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :teams
+
   resources :tournaments
 
   root 'pages#home'
