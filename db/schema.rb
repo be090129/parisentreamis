@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306134018) do
+ActiveRecord::Schema.define(version: 20160306145927) do
+
+  create_table "bets", force: true do |t|
+    t.datetime "start_at"
+    t.integer  "score1"
+    t.integer  "score2"
+    t.integer  "equipe1_id"
+    t.integer  "equipe2_id"
+    t.integer  "global_result_point"
+    t.integer  "result_point"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tournament_id"
+  end
+
+  add_index "bets", ["tournament_id"], name: "index_bets_on_tournament_id"
 
   create_table "players", force: true do |t|
     t.string   "name"

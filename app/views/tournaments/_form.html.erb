@@ -38,10 +38,11 @@
 
 
     <div class="tab-content">
+
       <div class="tab-pane active" id="teamplayer">
         <div class="row">
           <div class='col-md-12'><br />
-            <%= f.fields_for :teams do |task_form| %>
+            <%= f.fields_for :teams,f.object.teams.order(:name) do |task_form| %>
                 <%= render 'team_fields', :f => task_form %>
             <% end %>
           </div>
@@ -54,12 +55,24 @@
         </div><br />
       </div>
 
-      <div class="tab-pane active" id="participants">
+      <div class="tab-pane" id="participants">
 
       </div>
 
-      <div class="tab-pane active" id="bets">
+      <div class="tab-pane" id="bets">
+        <div class="row">
+          <div class='col-md-12'><br />
+            <%= f.fields_for :bets, f.object.bets.order(:start_at) do |bet_form| %>
+                <%= render 'bets_fields', :f => bet_form %>
+            <% end %>
+          </div>
+        </div><br />
 
+        <div class="row">
+          <div class='col-md-12'>
+            <p><%= f.link_to_add "Add a bet", :bets, class: "btn btn-success" %></p>
+          </div>
+        </div><br />
       </div>
 
     </div>
@@ -79,4 +92,5 @@
     autoclose: true,
   });
   });
+
 </script>

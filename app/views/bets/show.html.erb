@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @bet.start_at %>
+</p>
+
+<p>
+  <strong>Score1:</strong>
+  <%= @bet.score1 %>
+</p>
+
+<p>
+  <strong>Score2:</strong>
+  <%= @bet.score2 %>
+</p>
+
+<p>
+  <strong>Equipe1:</strong>
+  <%= @bet.equipe1_id %>
+</p>
+
+<p>
+  <strong>Equipe2:</strong>
+  <%= @bet.equipe2_id %>
+</p>
+
+<p>
+  <strong>Global result point:</strong>
+  <%= @bet.global_result_point %>
+</p>
+
+<p>
+  <strong>Result point:</strong>
+  <%= @bet.result_point %>
+</p>
+
+<%= link_to 'Edit', edit_bet_path(@bet) %> |
+<%= link_to 'Back', bets_path %>

@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col-md-4">
+    <%= f.label :start_at, 'Commence à :' %><br />
+    <%= f.datetime_select :start_at, :class => 'datepicker' %>
+  </div>
+
+  <div class="col-md-2">
+    <p>Points Match :</p>
+    <%= f.number_field :global_result_point, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="col-md-2">
+    <p>Points Résultat :</p>
+    <%= f.number_field :result_point, autofocus: true, class: "form-control" %>
+  </div>
+
+</div><br />
+
+<div class="row">
+
+  <div class="col-md-3">
+    <b><p>Equipe 1 :</p></b>
+    <%= f.collection_select(:equipe1_id, Team.all, :id, :name, {:prompt=>true}, {:id =>"proprio",:class=>'form-control'}) %>
+  </div>
+  <div class="col-md-2">
+    <p></p><br />
+    <%= f.number_field :score1, :placeholder => "Score1", autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="col-md-3">
+    <b><p>Equipe 2 :</p></b>
+    <%= f.collection_select(:equipe2_id, Team.all, :id, :name, {:prompt=>true}, {:id =>"proprio",:class=>'form-control'}) %>
+  </div>
+  <div class="col-md-2">
+    <p></p><br />
+    <%= f.number_field :score2, :placeholder => "Score2", autofocus: true, class: "form-control" %>
+  </div>
+
+
+  <div class="col-md-2">
+    <p></p><br />
+    <%= f.link_to_remove "Remove this bet", class: "btn btn-primary" %>
+  </div>
+</div><br />
+
+<hr>
+
+
+
+

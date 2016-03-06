@@ -27,7 +27,6 @@ class TournamentsController < ApplicationController
   # POST /tournaments.json
   def create
     @tournament = Tournament.new(tournament_params)
-
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to tournaments_path, notice: 'Tournament was successfully created.' }
@@ -42,6 +41,7 @@ class TournamentsController < ApplicationController
   # PATCH/PUT /tournaments/1
   # PATCH/PUT /tournaments/1.json
   def update
+
     respond_to do |format|
       if @tournament.update(tournament_params)
         format.html { redirect_to tournaments_path, notice: 'Tournament was successfully updated.' }
@@ -71,6 +71,6 @@ class TournamentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:name, :start_date, :end_date, :private, :teams_attributes => [:id, :name, :_destroy, :players_attributes => [:id, :name, :post, :point, :_destroy]])
+      params.require(:tournament).permit(:name, :start_date, :end_date, :private, :bets_attributes => [:id, :start_at, :equipe1_id, :equipe2_id, :score1,:score2,:global_result_point,:result_point, :_destroy], :teams_attributes => [:id, :name, :_destroy, :players_attributes => [:id, :name, :post, :point, :_destroy]])
     end
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_at: 2016-03-06 10:52:45
+  score1: 1
+  score2: 1
+  equipe1_id: 1
+  equipe2_id: 1
+  global_result_point: 1
+  result_point: 1
+
+two:
+  start_at: 2016-03-06 10:52:45
+  score1: 1
+  score2: 1
+  equipe1_id: 1
+  equipe2_id: 1
+  global_result_point: 1
+  result_point: 1
