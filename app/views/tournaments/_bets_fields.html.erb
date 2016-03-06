@@ -21,7 +21,7 @@
 
   <div class="col-md-3">
     <b><p>Equipe 1 :</p></b>
-    <%= f.collection_select(:equipe1_id, Team.all, :id, :name, {:prompt=>true}, {:id =>"proprio",:class=>'form-control'}) %>
+    <%= f.collection_select(:equipe1_id, Team.all.order(:name), :id, :name, {:prompt=>true}, {:id =>"proprio",:class=>'form-control'}) %>
   </div>
   <div class="col-md-2">
     <p></p><br />
@@ -30,7 +30,7 @@
 
   <div class="col-md-3">
     <b><p>Equipe 2 :</p></b>
-    <%= f.collection_select(:equipe2_id, Team.all, :id, :name, {:prompt=>true}, {:id =>"proprio",:class=>'form-control'}) %>
+    <%= f.collection_select(:equipe2_id, Team.all.order(:name), :id, :name, {:prompt=>true}, {:id =>"proprio",:class=>'form-control'}) %>
   </div>
   <div class="col-md-2">
     <p></p><br />
