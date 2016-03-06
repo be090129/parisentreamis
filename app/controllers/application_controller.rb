@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def only_admin
+    if !current_user || (current_user && !current_user.is_admin)
+      flash[:error] = "You must be logged as admin to access this section"
+      redirect_to root_path
+    end
+  end
 
 
   def configure_permitted_parameters
