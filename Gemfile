@@ -14,6 +14,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails', '~> 5.2'
 gem 'bootstrap-datepicker-rails'
 gem 'nested_form'
+gem 'devise', '~> 3.5.6'
 
 
 
