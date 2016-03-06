@@ -1,5 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_filter :only_admin, only: [:new, :edit, :update, :destroy, :index]
+
 
   # GET /tournaments
   # GET /tournaments.json
