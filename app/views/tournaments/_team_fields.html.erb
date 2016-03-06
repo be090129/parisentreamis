@@ -7,6 +7,20 @@
     </div>
   </div><br />
 
+  <div class="row">
+    <div class='col-md-11 col-md-offset-1'>
+      <%= f.fields_for :players, f.object.players.order(:post) do |builder| %>
+          <%= render 'players_fields', f: builder %>
+      <% end %>
+    </div>
+  </div><br />
+
+  <div class="row">
+    <div class='col-md-11 col-md-offset-1'>
+      <p><%= f.link_to_add "Add a player", :players, class: "btn btn-warning" %></p>
+    </div>
+  </div>
+
 
 
 
