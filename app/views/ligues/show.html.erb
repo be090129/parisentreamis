@@ -23,10 +23,16 @@
                   Match terminé (<%= bet.score_final %>) </br>
               <% elsif bet.is_start %>
                   Trop tard pour un pronostic ! Match en cours...</br>
+              <% elsif bet.pronosticated_by_user(current_user)%>
+                  Déjà pronostiqué (<%=bet.pronosticated_by_user(current_user).score_prono%>) </br>
               <% else %>
-                    <%= link_to "FAIRE MON PRONOSTIC",
-                                 tournament_ligues_path(@tournament), :class => 'btn btn-warning' %> </br>
+                  <%= link_to "FAIRE MON PRONOSTIC",
+                              new_tournament_ligue_bet_pronostic_path(@tournament, @ligue, bet), :class => 'btn btn-warning' %> </br>
               <% end %>
+            </td>
+            <td>
+              <%= link_to "Voir les pronostics",
+                          tournament_ligue_bet_path(@tournament, @ligue, bet), :class => 'btn btn-info btn-mediumlarge' %>
             </td>
           </tr>
       <% end %>
@@ -55,10 +61,16 @@
                   Match terminé (<%= bet.score_final %>) </br>
               <% elsif bet.is_start %>
                   Trop tard pour un pronostic ! Match en cours...</br>
+              <% elsif bet.pronosticated_by_user(current_user)%>
+                  Déjà pronostiqué (<%=bet.pronosticated_by_user(current_user).score_prono%>) </br>
               <% else %>
                   <%= link_to "FAIRE MON PRONOSTIC",
-                              tournament_ligues_path(@tournament), :class => 'btn btn-warning' %> </br>
+                              new_tournament_ligue_bet_pronostic_path(@tournament, @ligue, bet), :class => 'btn btn-warning' %> </br>
               <% end %>
+            </td>
+            <td>
+              <%= link_to "Voir les pronostics",
+                          tournament_ligue_bet_path(@tournament, @ligue, bet), :class => 'btn btn-info btn-mediumlarge' %>
             </td>
           </tr>
       <% end %>
@@ -84,6 +96,10 @@
             <td><%= bet.equipe2.name %></td>
             <td>
               Match terminé (<%= bet.score_final %>)
+            </td>
+            <td>
+              <%= link_to "Voir les pronostics",
+                          tournament_ligue_bet_path(@tournament, @ligue, bet), :class => 'btn btn-info btn-mediumlarge' %>
             </td>
           </tr>
       <% end %>

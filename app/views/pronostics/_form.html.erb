@@ -1,0 +1,39 @@
+<%= form_for([@tournament, @ligue, @bet, @pronostic])  do |f| %>
+
+        <% if @pronostic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pronostic.errors.count, "error") %> prohibited this pronostic from being saved:</h2>
+
+      <ul>
+      <% @pronostic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <table class="table table-condensed" style="text-align: center">
+        <caption>Date du match <%=@bet.start_at.strftime("%d/%m/%Y à %Rh") %></caption>
+        <tr>
+          <td><h2><%=@bet.equipe1.name%></h2></td>
+          <td></td>
+          <td><h2><%= @bet.equipe2.name%></h2></td>
+        </tr>
+        <tr>
+          <td><%= f.number_field :score1, :min => 0, autofocus: true, class: "form-control" , :placeholder => "SCORE" %></td>
+          <td></td>
+          <td><%= f.number_field :score2, :min => 0, autofocus: true, class: "form-control", :placeholder => "SCORE" %></td>
+        </tr>
+
+
+      </table>
+
+
+
+    <div class="row">
+      <div class='col-md-2 col-md-offset-10'>
+        <%= link_to 'Retour',tournament_ligue_path(@ligue.tournament_id, @ligue.id), class: "btn btn-primary" %>
+        <%= f.submit "Pariez", class: "btn btn-success" %>
+      </div>
+    </div>
+<% end %>

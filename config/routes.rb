@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
 
+
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
@@ -15,10 +16,10 @@ Rails.application.routes.draw do
 
   resources :tournaments do
     resources :ligues do
-      resources :bets
-
+      resources :bets do
+        resources :pronostics
+      end
     end
-
   end
 
   root 'pages#home'

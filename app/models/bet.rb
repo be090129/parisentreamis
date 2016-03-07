@@ -2,6 +2,8 @@ class Bet < ActiveRecord::Base
   belongs_to :tournament
   belongs_to :equipe1, :class_name => 'Team', :foreign_key => 'equipe1_id'
   belongs_to :equipe2, :class_name => 'Team', :foreign_key => 'equipe2_id'
+  has_many :pronostics
+
 
   def is_finished
     !(score1.blank? && score2.blank?)
@@ -25,13 +27,11 @@ class Bet < ActiveRecord::Base
     end
   end
 
-=begin
   def pronosticated_by_user(user)
     if user && !user.is_admin
-        old_pronostic=Pronostic.where("user_id = ? AND match_id = ?",user.id,id).first
+      old_pronostic=Pronostic.where("user_id = ? AND bet_id = ?",user.id,id).first
     end
   end
-=end
 
 
 

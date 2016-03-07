@@ -19,7 +19,7 @@
         <td><%= ligue.name %></td>
         <% if user_signed_in? && current_user.id == ligue.owner_id %>
             <td><%= link_to "PARIEZ",
-                            tournament_ligue_bets_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
+                            tournament_ligue_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
             <td><%= link_to "GEREZ VOTRE LIGUE",
                             edit_tournament_ligue_path(ligue.tournament_id,ligue) , :class => 'btn btn-warning btn-mediumlarge' %></td>
             <td><%= link_to "EFFACEZ VOTRE LIGUE",
