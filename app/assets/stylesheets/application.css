@@ -14,3 +14,10 @@
  *= require bootstrap-datepicker3
  *= require_self
  */
+
+
+hr {
+    border-top: 1px solid  #c0392b !important;
+    margin-bottom:20px !important;
+    margin-top:20px !important;
+}

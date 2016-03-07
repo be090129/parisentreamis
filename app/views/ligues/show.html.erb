@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row center">
+<h1><%= @ligue.name %></h1>
+</div>
+
+<hr/>
+<h1>Matchs du jour (<%=DateTime.now.strftime("%d/%m/%Y à %R h")%>)</h1>
+<hr/>
+
+
+<% if (!@matchs_du_jour.blank?) %>
+  <table class="table table-striped">
+      <tbody>
+      <% @matchs_du_jour.each do |bet| %>
+          <tr>
+            <td><%= bet.start_at.strftime("%d/%m/%Y à %R h") %></td>
+            <td><%= bet.equipe1.name %></td>
+            <td>VS</td>
+            <td><%= bet.equipe2.name %></td>
+            <td>
+              <% if bet.is_finished%>
+                  Match terminé (<%= bet.score_final %>) </br>
+              <% elsif bet.is_start %>
+                  Trop tard pour un pronostic ! Match en cours...</br>
+              <% else %>
+                    <%= link_to "FAIRE MON PRONOSTIC",
+                                 tournament_ligues_path(@tournament), :class => 'btn btn-warning' %> </br>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+  </table>
+<%else %>
+    Aujourd'hui il n'y a pas de match !
+<% end %>
+
+<hr/>
+<h1>Matchs à venir</h1>
+<hr/>
+
+
+<% if (!@matchs_a_venir.blank?) %>
+    <table class="table table-striped">
+      <tbody>
+      <% @matchs_a_venir.each do |bet| %>
+          <tr>
+            <td><%= bet.start_at.strftime("%d/%m/%Y à %R h") %></td>
+            <td><%= bet.equipe1.name %></td>
+            <td>VS</td>
+            <td><%= bet.equipe2.name %></td>
+            <td>
+              <% if bet.is_finished%>
+                  Match terminé (<%= bet.score_final %>) </br>
+              <% elsif bet.is_start %>
+                  Trop tard pour un pronostic ! Match en cours...</br>
+              <% else %>
+                  <%= link_to "FAIRE MON PRONOSTIC",
+                              tournament_ligues_path(@tournament), :class => 'btn btn-warning' %> </br>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<%else %>
+    Il n'y a pas de match à venir !
+<% end %>
+
+<hr/>
+<h1>Matchs terminés</h1>
+<hr/>
+
+
+<% if (!@matchs_a_venir.blank?) %>
+    <table class="table table-striped">
+      <tbody>
+      <% @matchs_termines.each do |bet| %>
+          <tr>
+            <td><%= bet.start_at.strftime("%d/%m/%Y à %R h") %></td>
+            <td><%= bet.equipe1.name %></td>
+            <td>VS</td>
+            <td><%= bet.equipe2.name %></td>
+            <td>
+              Match terminé (<%= bet.score_final %>)
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<%else %>
+    Il n'y a pas de match à venir !
+<% end %>
+

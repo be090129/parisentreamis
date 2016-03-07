@@ -2,7 +2,7 @@
   <h1>Paris entre amis</h1>
   <h2>1er site de paris sportifs entre copains !</h2>
   <% if user_signed_in? %>
-      # do something
+      <%= link_to "Participer à une compétition", tournaments_path, class: "btn btn-primary btn-lg" %>
   <% else %>
       <p>
         <%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>

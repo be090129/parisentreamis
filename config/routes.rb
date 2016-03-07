@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :bets
+
 
   devise_for :users, controllers: {
       sessions: 'users/sessions',
@@ -11,10 +11,15 @@ Rails.application.routes.draw do
   }
 
   resources :players
-
   resources :teams
 
-  resources :tournaments
+  resources :tournaments do
+    resources :ligues do
+      resources :bets
+
+    end
+
+  end
 
   root 'pages#home'
 

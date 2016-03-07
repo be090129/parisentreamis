@@ -1,6 +1,8 @@
 class TournamentsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
-  before_filter :only_admin, only: [:new, :edit, :update, :destroy, :index]
+  before_filter :only_admin, only: [:new, :edit, :update, :destroy]
 
 
   # GET /tournaments
@@ -12,6 +14,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1
   # GET /tournaments/1.json
   def show
+
   end
 
   # GET /tournaments/new

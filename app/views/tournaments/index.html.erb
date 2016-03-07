@@ -1,25 +1,19 @@
 <h1>Listing tournaments</h1>
 
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Private</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @tournaments.each do |tournament| %>
       <tr>
-        <td><%= tournament.name %></td>
-        <td><%= tournament.start_date.strftime("%d/%m/%Y") %></td>
-        <td><%= tournament.end_date.strftime("%d/%m/%Y") %></td>
-        <td><%= tournament.private %></td>
-        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><h5><b><%= tournament.name %></b></h5></td>
+        <td> <%= link_to "REJOINDRE UNE LIGUE",
+                         tournament_ligues_path(tournament), :class => 'btn btn-success btn-mediumlarge' %></td>
+        <td> <%= link_to "CREER UNE LIGUE",
+                         new_tournament_ligue_path(tournament), :class => 'btn btn-warning btn-mediumlarge' %></td>
+
+        <% if current_user && current_user.is_admin %>
+          <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+          <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +21,7 @@
 
 <br>
 
-<%= link_to 'New Tournament', new_tournament_path, class: "btn btn-primary" %>
+<% if current_user && current_user.is_admin %>
+  <%= link_to 'New Tournament', new_tournament_path, class: "btn btn-primary" %>
+<%end%>
+

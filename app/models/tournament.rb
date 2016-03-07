@@ -7,5 +7,9 @@ class Tournament < ActiveRecord::Base
   accepts_nested_attributes_for :bets, :allow_destroy => true
 
   has_many :teams
+  has_many :ligues
+
+  scope :is_open, -> { where('start_date <= ? AND end_date >= ?', Date.today, Date.today) }
+
 
 end
