@@ -9,13 +9,7 @@ class LiguesController < ApplicationController
   end
 
   def show
-    @tournament = Tournament.find(params[:tournament_id])
 
-    @matchs_du_jour = @tournament.bets.where("start_at > ? AND start_at < ? ",DateTime.now.beginning_of_day, DateTime.now.end_of_day).order(:start_at)
-
-    @matchs_termines = @tournament.bets.where("start_at < ? ",DateTime.now.to_date).order(:start_at)
-
-    @matchs_a_venir = @tournament.bets.where("start_at > ? ",DateTime.now.to_date).order(:start_at)
 
   end
 
