@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row center">
 <h1><%= @ligue.name %></h1>
 </div>
@@ -14,7 +12,7 @@
       <tbody>
       <% @matchs_du_jour.each do |bet| %>
           <tr>
-            <td><%= bet.start_at.strftime("%d/%m/%Y à %R h") %></td>
+            <td><%= bet.start_at.strftime("%d/%m/%Y à %Rh") %></td>
             <td><%= bet.equipe1.name %></td>
             <td>VS</td>
             <td><%= bet.equipe2.name %></td>
