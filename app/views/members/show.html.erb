@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @member.user %>
+</p>
+
+<p>
+  <strong>Ligue:</strong>
+  <%= @member.ligue %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @member.status %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @member.score %>
+</p>
+
+<p>
+  <strong>Scoreday:</strong>
+  <%= @member.scoreday %>
+</p>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>

@@ -27,9 +27,9 @@ class Bet < ActiveRecord::Base
     end
   end
 
-  def pronosticated_by_user(user)
+  def pronosticated_by_user(user, ligue)
     if user && !user.is_admin
-      old_pronostic=Pronostic.where("user_id = ? AND bet_id = ?",user.id,id).first
+      old_pronostic=Pronostic.where("user_id = ? AND ligue_id = ? AND bet_id = ?",user.id,ligue.id, id).first
     end
   end
 

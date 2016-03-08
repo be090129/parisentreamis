@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307024614) do
+ActiveRecord::Schema.define(version: 20160308003444) do
 
   create_table "bets", force: true do |t|
     t.datetime "start_at"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20160307024614) do
   end
 
   add_index "ligues", ["tournament_id"], name: "index_ligues_on_tournament_id"
+
+  create_table "members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "ligue_id"
+    t.string   "status"
+    t.integer  "score"
+    t.integer  "scoreday"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["ligue_id"], name: "index_members_on_ligue_id"
+  add_index "members", ["user_id"], name: "index_members_on_user_id"
 
   create_table "players", force: true do |t|
     t.string   "name"

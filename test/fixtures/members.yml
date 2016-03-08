@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  ligue_id: 
+  status: MyString
+  score: 1
+  scoreday: 1
+
+two:
+  user_id: 
+  ligue_id: 
+  status: MyString
+  score: 1
+  scoreday: 1

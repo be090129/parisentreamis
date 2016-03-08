@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
 
 
+  resources :members
+
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :tournaments do
     resources :ligues do
+      resources :members
       resources :bets do
         resources :pronostics
       end

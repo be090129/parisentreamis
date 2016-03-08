@@ -1,0 +1,13 @@
+<%= form_for([@tournament, @ligue,@member]) do |f| %>
+
+    <h1>Souhaitez-vous adhérer à la ligue : <%= @ligue.name %> ?</h1>
+    <div class="row">
+      <%= f.hidden_field :ligue_id, :value => @ligue.id %>
+
+      <div class='col-md-2 col-md-offset-10'>
+        <%= link_to 'Retour',tournament_ligues_path(@ligue.tournament_id, @ligue.id), class: "btn btn-primary" %>
+        <%= f.submit "Adhérez", class: "btn btn-success" %>
+      </div>
+    </div>
+<% end %>
+

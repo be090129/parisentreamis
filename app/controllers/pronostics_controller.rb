@@ -1,7 +1,26 @@
 class PronosticsController < ApplicationController
   before_action :set_pronostic, only: [:show, :edit, :update, :destroy]
+  before_filter :is_member
+
 
   respond_to :html
+
+  def is_member
+    @ligue = Ligue.find(params[:ligue_id])
+    @tournament = Tournament.find(params[:tournament_id])
+    @members = @ligue.members
+    if  !current_user.ligues.include?(@ligue)
+      flash[:error] = "Vous n'etes pas inscrit dans cette ligue"
+      redirect_to tournament_ligues_url(@tournament)
+    else
+      @members.each do |member|
+        if member.user_id == current_user.id && member.status != "Admis"
+          flash[:error] = "Vous n'etes pas inscrit dans cette ligue"
+          redirect_to tournament_ligues_url(@tournament)
+        end
+      end
+    end
+  end
 
   def index
     @pronostics = Pronostic.all

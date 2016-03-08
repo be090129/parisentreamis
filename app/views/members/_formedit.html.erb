@@ -1,0 +1,34 @@
+<%= form_for([@tournament, @ligue,@member]) do |f| %>
+
+
+    <p>Pour le moment la demande de participation de  <%= @member.user.name %> est :
+
+      <% if @member.status == "Admis" %>
+        Admis
+      <% elsif @member.status == "Refused" %>
+        Refusée
+      <% else %>
+        En attente
+      <%end%>
+
+    </p>
+
+    <p>Vous pouvez modifier sa participation :</p><br />
+
+    <div class="row">
+      <div class='col-md-2'>
+        <%= submit_tag "Valider la participation", name: 'admis', :class => "btn btn-success" %></td>
+      </div>
+
+      <div class='col-md-2'>
+        <%= submit_tag "Refuser la participation", name: 'refused', :class => "btn btn-primary" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class='col-md-1 col-md-offset-11'>
+        <%= link_to 'Retour',edit_tournament_ligue_path( @tournament.id, @ligue.id), class: "btn btn-primary" %>
+      </div>
+    </div>
+<% end %>
+

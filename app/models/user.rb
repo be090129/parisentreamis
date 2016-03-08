@@ -5,5 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :pronostics
+  has_many :members
+  has_many :ligues, :through => :members
+
 
 end

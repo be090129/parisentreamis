@@ -21,7 +21,7 @@
                   Match terminé (<%= bet.score_final %>) </br>
               <% elsif bet.is_start %>
                   Trop tard pour un pronostic ! Match en cours...</br>
-              <% elsif bet.pronosticated_by_user(current_user)%>
+              <% elsif bet.pronosticated_by_user(current_user, @ligue)%>
                   Déjà pronostiqué (<%=bet.pronosticated_by_user(current_user).score_prono%>) </br>
               <% else %>
                   <%= link_to "FAIRE MON PRONOSTIC",
@@ -59,8 +59,8 @@
                   Match terminé (<%= bet.score_final %>) </br>
               <% elsif bet.is_start %>
                   Trop tard pour un pronostic ! Match en cours...</br>
-              <% elsif bet.pronosticated_by_user(current_user)%>
-                  Déjà pronostiqué (<%=bet.pronosticated_by_user(current_user).score_prono%>) </br>
+              <% elsif bet.pronosticated_by_user(current_user, @ligue)%>
+                  Déjà pronostiqué (<%=bet.pronosticated_by_user(current_user, @ligue).score_prono%>) </br>
               <% else %>
                   <%= link_to "FAIRE MON PRONOSTIC",
                               new_tournament_ligue_bet_pronostic_path(@tournament, @ligue, bet), :class => 'btn btn-warning' %> </br>

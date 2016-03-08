@@ -1,12 +1,32 @@
 class LiguesController < ApplicationController
   before_action :set_ligue, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_filter :is_member, only: [:edit, :update, :show, :destroy ]
 
   respond_to :html
 
+  def is_member
+    @ligue = Ligue.find(params[:id])
+    @tournament = Tournament.find(params[:tournament_id])
+    @members = @ligue.members
+    if  !current_user.ligues.include?(@ligue)
+      flash[:error] = "Vous n'etes pas inscrit dans cette ligue"
+      redirect_to tournament_ligues_url(@tournament)
+    else
+      @members.each do |member|
+        if member.user_id == current_user.id && member.status != "Admis"
+          flash[:error] = "Vous n'etes pas inscrit dans cette ligue"
+          redirect_to tournament_ligues_url(@tournament)
+        end
+      end
+    end
+  end
+
   def index
     @ligues = Ligue.all
+    @tournament = Tournament.find(params[:tournament_id])
   end
+
 
   def show
     @tournament = Tournament.find(params[:tournament_id])
@@ -26,7 +46,7 @@ class LiguesController < ApplicationController
 
   def edit
     @tournament = Tournament.find(params[:tournament_id])
-
+    @members = @ligue.members
   end
 
   def create
@@ -35,7 +55,27 @@ class LiguesController < ApplicationController
     @ligue.owner_id = current_user.id
     @ligue.tournament_id =  @tournament.id
 
+    respond_to do |format|
+      if @ligue.save
 
+        @member = Member.new(params[:member])
+        @member.user_id = current_user.id
+        @member.ligue_id = @ligue.id
+        @member.status = "Admis"
+        @member.score = 0
+        @member.scoreday = 0
+        @member.save
+
+        format.html { redirect_to tournament_ligues_path, notice: 'Ligue was successfully created.' }
+        format.json { render :show, status: :created, location: @ligue }
+      else
+        format.html { render :new }
+        format.json { render json: @ligue.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
     respond_to do |format|
       if @ligue.save
         format.html { redirect_to tournament_ligues_path, notice: 'Ligue was successfully created.' }
@@ -47,18 +87,22 @@ class LiguesController < ApplicationController
     end
   end
 
-  def update
-    @ligue.update(ligue_params)
-    respond_with(@ligue)
-  end
-
   def destroy
+    @tournament = Tournament.find(params[:tournament_id])
+
     @ligue.destroy
-    respond_with(@ligue)
+    respond_to do |format|
+      format.html { redirect_to tournament_ligues_url(@tournament), notice: 'Ligue was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
-    def set_ligue
+
+
+
+
+  def set_ligue
       @ligue = Ligue.find(params[:id])
     end
 
