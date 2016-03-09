@@ -1,37 +1,51 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start at:</strong>
-  <%= @bet.start_at %>
-</p>
+<div class="panel panel-default">
 
-<p>
-  <strong>Score1:</strong>
-  <%= @bet.score1 %>
-</p>
+  <div class="panel-body">
 
-<p>
-  <strong>Score2:</strong>
-  <%= @bet.score2 %>
-</p>
+    <div class="row">
+      <div class='col-md-2'>
+        <%= link_to 'Retour',tournament_ligue_path(@tournament, @ligue), class: "btn btn-primary" %>
+      </div>
+    </div><br />
 
-<p>
-  <strong>Equipe1:</strong>
-  <%= @bet.equipe1_id %>
-</p>
+    <table class="table table-condensed" style="text-align: center">
+      <caption>Date du match <%=@bet.start_at.strftime("%d/%m/%Y à %Rh") %></caption>
+      <tr>
+        <td><h2><%=@bet.equipe1.name%></h2></td>
+        <td></td>
+        <td><h2><%= @bet.equipe2.name%></h2></td>
+      </tr>
+    </table>
 
-<p>
-  <strong>Equipe2:</strong>
-  <%= @bet.equipe2_id %>
-</p>
+    <div class="row-fluid">
+      <div class="span12 center-align">
+        <div class="alert alert-info">Voici l'ensemble des pronostics qui ont été réalisés pour ce match:</div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>Joueur</th>
+        <th>Equipe 1</th>
+        <th>Equipe 2</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @members.each do |member| %>
+        <% @pronostics.each do |pronostic| %>
+          <% if @ligue.id == pronostic.ligue_id && pronostic.bet_id == @bet.id && pronostic.user_id == member.user_id%>
+            <tr>
+              <td><%= member.user.name%></td>
+              <td><%= pronostic.score1 %></td>
+              <td><%= pronostic.score2 %></td>
+            </tr>
+          <%end%>
+        <%end%>
+      <%end%>
 
-<p>
-  <strong>Global result point:</strong>
-  <%= @bet.global_result_point %>
-</p>
+      </tbody>
+    </table>
+  </div>
 
-<p>
-  <strong>Result point:</strong>
-  <%= @bet.result_point %>
-</p>
-
+</div>

@@ -44,9 +44,31 @@ class TournamentsController < ApplicationController
   # PATCH/PUT /tournaments/1
   # PATCH/PUT /tournaments/1.json
   def update
+    @tournament = Tournament.find(params[:id])
 
     respond_to do |format|
       if @tournament.update(tournament_params)
+        @tournament.ligues.each do |ligue|
+          @tournament.bets.each do |bet|
+            if !bet.score1.nil?
+              pronostics=Pronostic.where(:bet_id => bet.id)
+              pronostics.each do |p|
+                ligue.members do |m|
+                    if p.win?
+                          m.score=m.score+3
+                        m.scoreday=m.scoreday+3
+                        m.save
+
+                    elsif !p.win? && p.global_win?
+                        m.score=m.score+1
+                        m.scoreday=m.scoreday+1
+                        m.save
+                    end
+                end
+              end
+            end
+          end
+        end
         format.html { redirect_to tournaments_path, notice: 'Tournament was successfully updated.' }
         format.json { render :show, status: :ok, location: @tournament }
       else

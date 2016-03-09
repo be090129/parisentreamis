@@ -33,9 +33,9 @@
                                 <td><%= link_to "PARTICIPEZ",
                                                 tournament_ligue_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
                             <%elsif member.status == "Pending" %>
-                                <td>Votre demande de participation à cette ligue est en attente de validation.</td>
+                                <td>En attente</td>
                             <%else %>
-                                <td>Votre demande de participation  à cette ligue a été refusée.</td>
+                                <td>Refusée</td>
                             <%end%>
                         <%end%>
                     <%end%>
@@ -43,7 +43,7 @@
                     <td></td>
                 <% else %>
                     <td><%= link_to "ADHEREZ A CETTE LIGUE",
-                                        new_tournament_ligue_member_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-primary btn-mediumlarge' %></td>
+                                        new_tournament_ligue_member_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-info btn-mediumlarge' %></td>
                     <td></td>
                     <td></td>
                 <% end %>

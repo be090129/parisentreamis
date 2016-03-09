@@ -31,7 +31,14 @@ class BetsController < ApplicationController
   end
 
   def show
-    respond_with(@bet)
+
+    @bet = Bet.find(params[:id])
+
+    @pronostics = @bet.pronostics
+
+    @ligue = Ligue.find(params[:ligue_id])
+    @tournament = Tournament.find(params[:tournament_id])
+    @members = @ligue.members
   end
 
   def new
@@ -49,8 +56,46 @@ class BetsController < ApplicationController
   end
 
   def update
-    @bet.update(bet_params)
-    respond_with(@bet)
+    @bet = Bet.find(params[:id])
+    @tournament = Tournament.find(params[:tournament_id])
+
+    respond_to do |format|
+      if @bet.update_attributes(params[:bet])
+        if !@bet.score1.nil?
+
+          @tournament.ligues.each do |ligue|
+            pronostics=Pronostic.find_all_by_bet_id(@bet.id)
+            pronostics.each do |p|
+              if p.win?
+                player=p.ligue.member
+                if player
+                  player.score=player.score+3
+                  player.scoreday=player.scoreday+3
+                  player.save
+                end
+              elsif !p.win? && p.global_win?
+                player=p.ligue.member
+                if player
+                  player.score=player.score+1
+                  player.scoreday=player.scoreday+1
+                  player.save
+                end
+              end
+            end
+          end
+        end
+        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @match.errors, status: :unprocessable_entity }
+      end
+    end
+
+
+
+
+
   end
 
   def destroy
