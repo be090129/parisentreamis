@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading center">
+    <h1><%= link_to 'Retour',tournament_ligue_path(@tournament.id, @ligue.id), class: "btn btn-primary" %> Classement du <%=DateTime.now.strftime("%d/%m/%Y")%> de la ligue <%= @ligue.name %></h1>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped" >
+      <thead>
+      <tr>
+        <th>Pronostiqueur</th>
+        <th class="center">Nombre de points</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @members.each do |member| %>
+          <tr>
+            <td><%= member.user.name %></td>
+            <td class="center"><%= member.scoreday %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

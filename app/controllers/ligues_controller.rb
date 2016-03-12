@@ -118,6 +118,12 @@ class LiguesController < ApplicationController
     @members = @ligue.members.order('score DESC')
   end
 
+  def classementday
+    @ligue = Ligue.find(params[:ligue_id])
+    @tournament = Tournament.find(params[:tournament_id])
+    @members = @ligue.members.order('scoreday DESC')
+  end
+
   private
 
 

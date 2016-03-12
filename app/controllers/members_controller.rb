@@ -92,6 +92,7 @@ class MembersController < ApplicationController
     end
   end
 
+
   private
     def set_member
       @member = Member.find(params[:id])

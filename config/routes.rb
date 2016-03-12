@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :ligues do
 
       get "classement" => "ligues#classement"
+      get "classementday" => "ligues#classementday"
+
 
 
       resources :members
