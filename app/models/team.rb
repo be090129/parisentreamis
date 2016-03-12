@@ -6,6 +6,7 @@ class Team < ActiveRecord::Base
   has_many :bets
 
   has_attached_file :avatar, styles: {
+      mini: '25x12>',
       thumb: '100x60>',
       square: '200x120>',
       medium: '400x240>'

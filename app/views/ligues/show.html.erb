@@ -112,9 +112,9 @@
           <% @matchs_termines.each do |bet| %>
               <tr>
                 <td><%= bet.start_at.strftime("%d/%m/%Y à %R h") %></td>
-                <td><%= image_tag(bet.equipe1.avatar.url(:thumb))  %> <%= bet.equipe1.name %> </td>
+                <td><%= image_tag(bet.equipe1.avatar.url(:mini))  %> <%= bet.equipe1.name %> </td>
                 <td>VS</td>
-                <td><%= bet.equipe2.name %> <%= image_tag(bet.equipe2.avatar.url(:thumb))  %></td>
+                <td><%= bet.equipe2.name %> <%= image_tag(bet.equipe2.avatar.url(:mini))  %></td>
                 <td>
                   Match terminé (<%= bet.score_final %>)
                 </td>
