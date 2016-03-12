@@ -12,28 +12,65 @@
     </div>
   <% end %>
 
-      <table class="table table-condensed" style="text-align: center">
+
+    <div class="row">
+      <div class="col-md-12">
         <caption>Date du match <%=@bet.start_at.strftime("%d/%m/%Y à %Rh") %></caption>
-        <tr>
-          <td><h2><%=@bet.equipe1.name%></h2></td>
-          <td></td>
-          <td><h2><%= @bet.equipe2.name%></h2></td>
-        </tr>
-        <tr>
-          <td><%= f.number_field :score1, :min => 0, autofocus: true, class: "form-control" , :placeholder => "SCORE" %></td>
-          <td></td>
-          <td><%= f.number_field :score2, :min => 0, autofocus: true, class: "form-control", :placeholder => "SCORE" %></td>
-        </tr>
+      </div>
+    </div>
+
+    <hr>
 
 
-      </table>
+    <div class="row center">
+      <div class="col-md-5">
+        <h2><%=@bet.equipe1.name%></h2>
+      </div>
+
+      <div class="col-md-2">
+        <h2>-</h2>
+      </div>
+
+      <div class="col-md-5">
+        <h2><%=@bet.equipe2.name%></h2>
+      </div>
+    </div>
+
+    <div class="row center">
+      <div class="col-md-5">
+        <%= image_tag(@bet.equipe1.avatar.url(:thumb))  %>
+      </div>
+
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-5">
+        <%= image_tag(@bet.equipe2.avatar.url(:thumb))  %>
+      </div>
+    </div>
+
+    <hr>
+
+
+    <div class="row center">
+      <div class="col-md-5">
+        <%= f.number_field :score1, :min => 0, autofocus: true, class: "form-control" , :placeholder => "SCORE" %>
+      </div>
+
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-5">
+        <%= f.number_field :score2, :min => 0, autofocus: true, class: "form-control", :placeholder => "SCORE" %>
+      </div>
+    </div><br />
 
 
 
     <div class="row">
-      <div class='col-md-2 col-md-offset-10'>
+      <div class='col-md-3 col-md-offset-9'>
         <%= link_to 'Retour',tournament_ligue_path(@ligue.tournament_id, @ligue.id), class: "btn btn-primary" %>
-        <%= f.submit "Pariez", class: "btn btn-success" %>
+        <%= f.submit "Pronostiquez", class: "btn btn-success" %>
       </div>
     </div>
 <% end %>
