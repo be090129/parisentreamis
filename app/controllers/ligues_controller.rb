@@ -1,7 +1,8 @@
 class LiguesController < ApplicationController
   before_action :set_ligue, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_filter :is_member, only: [:edit, :update, :show, :destroy ]
+  before_filter :is_member, only: [ :show]
+  before_filter :is_ligue_admin, only: [:edit, :update, :destroy ]
 
   respond_to :html
 
@@ -21,6 +22,18 @@ class LiguesController < ApplicationController
       end
     end
   end
+
+  def is_ligue_admin
+    @ligue = Ligue.find(params[:id])
+    @tournament = Tournament.find(params[:tournament_id])
+    if   user_signed_in? && current_user.id != @ligue.owner_id
+      flash[:error] = "Vous n'etes pas administrateur de cette ligue"
+      redirect_to tournament_ligues_url(@tournament)
+    end
+  end
+
+
+
 
   def index
     @ligues = Ligue.all
@@ -64,6 +77,8 @@ class LiguesController < ApplicationController
         @member.status = "Admis"
         @member.score = 0
         @member.scoreday = 0
+        @member.pwin = 0
+        @member.ploose = 0
         @member.save
 
         format.html { redirect_to tournament_ligues_path, notice: 'Ligue was successfully created.' }
@@ -97,9 +112,13 @@ class LiguesController < ApplicationController
     end
   end
 
+  def classement
+    @ligue = Ligue.find(params[:ligue_id])
+    @tournament = Tournament.find(params[:tournament_id])
+    @members = @ligue.members.order('score DESC')
+  end
+
   private
-
-
 
 
   def set_ligue

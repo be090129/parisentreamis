@@ -49,26 +49,44 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       if @tournament.update(tournament_params)
         @tournament.ligues.each do |ligue|
-          @tournament.bets.each do |bet|
-            if !bet.score1.nil?
-              pronostics=Pronostic.where(:bet_id => bet.id)
-              pronostics.each do |p|
-                ligue.members do |m|
-                    if p.win?
-                          m.score=m.score+3
-                        m.scoreday=m.scoreday+3
-                        m.save
+              @tournament.bets.each do |bet|
+                    if !bet.score1.nil? && !bet.not_refresh?
+                      bet.pronostics.each do |p|
 
-                    elsif !p.win? && p.global_win?
-                        m.score=m.score+1
-                        m.scoreday=m.scoreday+1
-                        m.save
+                        if p.win?
+                          member = Member.where('user_id = ?', p.user_id).first
+                          if member
+                            member.score=member.score+ bet.result_point+ bet.global_result_point
+                            member.scoreday=member.scoreday+ bet.result_point+ bet.global_result_point
+                            member.pwin = member.pwin + 1
+                            member.save
+                          end
+                        elsif !p.win? && p.global_win?
+                          member = Member.where('user_id = ?', p.user_id).first
+                          if member
+                            member.score=member.score+ bet.global_result_point
+                            member.scoreday=member.scoreday+bet.global_result_point
+                            member.pwin = member.pwin + 1
+                            member.save
+                          end
+                        elsif !p.win && !p.global_win?
+                          member = Member.where('user_id = ?', p.user_id).first
+                          if member
+                            member.ploose = member.ploose + 1
+                            member.save
+                          end
+
+                        end
+
+                      end
+
+                      bet.not_refresh = true
+                      bet.save
                     end
-                end
+
               end
-            end
-          end
         end
+
         format.html { redirect_to tournaments_path, notice: 'Tournament was successfully updated.' }
         format.json { render :show, status: :ok, location: @tournament }
       else

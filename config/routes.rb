@@ -16,8 +16,14 @@ Rails.application.routes.draw do
   resources :players
   resources :teams
 
+
+
   resources :tournaments do
     resources :ligues do
+
+      get "classement" => "ligues#classement"
+
+
       resources :members
       resources :bets do
         resources :pronostics

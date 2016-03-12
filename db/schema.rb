@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308003444) do
+ActiveRecord::Schema.define(version: 20160312185008) do
 
   create_table "bets", force: true do |t|
     t.datetime "start_at"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160308003444) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tournament_id"
+    t.boolean  "not_refresh"
   end
 
   add_index "bets", ["tournament_id"], name: "index_bets_on_tournament_id"
@@ -46,6 +47,8 @@ ActiveRecord::Schema.define(version: 20160308003444) do
     t.integer  "scoreday"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pwin"
+    t.integer  "ploose"
   end
 
   add_index "members", ["ligue_id"], name: "index_members_on_ligue_id"

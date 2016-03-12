@@ -3,6 +3,6 @@ class Ligue < ActiveRecord::Base
   has_many :pronostics
 
   has_many :members
-  has_many :users, :through => :members
+  has_many :users, :through => :members,  dependent: :destroy
 
 end

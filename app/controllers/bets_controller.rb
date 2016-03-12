@@ -61,29 +61,7 @@ class BetsController < ApplicationController
 
     respond_to do |format|
       if @bet.update_attributes(params[:bet])
-        if !@bet.score1.nil?
 
-          @tournament.ligues.each do |ligue|
-            pronostics=Pronostic.find_all_by_bet_id(@bet.id)
-            pronostics.each do |p|
-              if p.win?
-                player=p.ligue.member
-                if player
-                  player.score=player.score+3
-                  player.scoreday=player.scoreday+3
-                  player.save
-                end
-              elsif !p.win? && p.global_win?
-                player=p.ligue.member
-                if player
-                  player.score=player.score+1
-                  player.scoreday=player.scoreday+1
-                  player.save
-                end
-              end
-            end
-          end
-        end
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { head :no_content }
       else
@@ -109,6 +87,6 @@ class BetsController < ApplicationController
     end
 
     def bet_params
-      params.require(:bet).permit(:start_at, :score1, :score2, :equipe1_id, :equipe2_id, :global_result_point, :result_point)
+      params.require(:bet).permit(:not_refresh, :start_at, :score1, :score2, :equipe1_id, :equipe2_id, :global_result_point, :result_point)
     end
 end

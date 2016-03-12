@@ -31,31 +31,13 @@
 
 
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-      <li class="active"><a href="#teamplayer" role="tab" data-toggle="tab">Teams and players</a></li>
-      <li><a href="#bets" role="tab" data-toggle="tab">Bets</a></li>
+      <li  class="active"><a href="#bets" role="tab" data-toggle="tab">Bets</a></li>
     </ul>
 
 
     <div class="tab-content">
 
-      <div class="tab-pane active" id="teamplayer">
-        <div class="row">
-          <div class='col-md-12'><br />
-            <%= f.fields_for :teams,f.object.teams.order(:name) do |task_form| %>
-                <%= render 'team_fields', :f => task_form %>
-            <% end %>
-          </div>
-        </div><br />
-
-        <div class="row">
-          <div class='col-md-12'>
-            <p><%= f.link_to_add "Add a team", :teams, class: "btn btn-success" %></p>
-          </div>
-        </div><br />
-      </div>
-
-
-      <div class="tab-pane" id="bets">
+      <div class="tab-pane active" id="bets">
         <div class="row">
           <div class='col-md-12'><br />
             <%= f.fields_for :bets, f.object.bets.order(:start_at) do |bet_form| %>

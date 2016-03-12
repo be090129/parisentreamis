@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading center">
+      <h1><%= link_to 'Retour',tournament_ligue_path(@tournament.id, @ligue.id), class: "btn btn-primary" %> Classement générale de la ligue <%= @ligue.name %></h1>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped" >
+      <thead>
+      <tr>
+        <th>Pronostiqueur</th>
+        <th class="center">Nombre de points</th>
+        <th class="center">Pronostic(s) gagné(s)</th>
+        <th class="center">Pronostic(s) perdu(s)</th>
+
+
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @members.each do |member| %>
+          <tr>
+            <td><%= member.user.name %></td>
+            <td class="center"><%= member.score %></td>
+            <td class="center"><%= member.pwin %></td>
+            <td class="center"><%= member.ploose %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

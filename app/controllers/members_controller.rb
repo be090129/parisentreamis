@@ -45,6 +45,8 @@ class MembersController < ApplicationController
     @member.status = "Pending"
     @member.score = 0
     @member.scoreday = 0
+    @member.pwin = 0
+    @member.ploose = 0
 
     respond_to do |format|
       if @member.save
@@ -96,6 +98,6 @@ class MembersController < ApplicationController
     end
 
     def member_params
-      params.require(:member).permit(:user_id, :ligue_id, :status, :score, :scoreday)
+      params.require(:member).permit(:pwin, :ploose, :user_id, :ligue_id, :status, :score, :scoreday)
     end
 end

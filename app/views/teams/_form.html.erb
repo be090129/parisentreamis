@@ -11,11 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    <div class="row">
+      <div class='col-md-3 col-md-offset-9'>
+        <%= link_to 'Retour',teams_path, class: "btn btn-primary" %>
+        <%= f.submit "Mettre à jour", class: "btn btn-success" %>
+      </div>
+    </div>
 <% end %>
