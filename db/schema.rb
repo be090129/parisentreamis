@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312185008) do
+ActiveRecord::Schema.define(version: 20160312200516) do
 
   create_table "bets", force: true do |t|
     t.datetime "start_at"
@@ -81,6 +81,10 @@ ActiveRecord::Schema.define(version: 20160312185008) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tournament_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "teams", ["tournament_id"], name: "index_teams_on_tournament_id"

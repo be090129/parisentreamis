@@ -15,6 +15,8 @@ gem 'autoprefixer-rails', '~> 5.2'
 gem 'bootstrap-datepicker-rails'
 gem 'nested_form'
 gem 'devise', '~> 3.5.6'
+gem "paperclip", "4.1"
+gem 'aws-sdk', '~> 1.20.0'
 
 
 
