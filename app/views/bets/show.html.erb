@@ -9,19 +9,34 @@
       </div>
     </div><br />
 
-    <table class="table table-condensed" style="text-align: center">
-      <caption>Date du match <%=@bet.start_at.strftime("%d/%m/%Y à %Rh") %></caption>
-      <tr>
-        <td><h2><%=@bet.equipe1.name%></h2></td>
-        <td></td>
+    <div class="row center">
+      <div class="col-md-5">
+        <h2><%=@bet.equipe1.name%></h2>
+      </div>
+
+      <div class="col-md-2">
+        <h2>-</h2>
+      </div>
+
+      <div class="col-md-5">
+        <h2><%=@bet.equipe2.name%></h2>
+      </div>
+    </div>
+
+    <div class="row center">
+      <div class="col-md-5">
         <%= image_tag(@bet.equipe1.avatar.url(:thumb))  %>
-      </tr>
-      <tr>
-        <td><h2><%=@bet.equipe2.name%></h2></td>
-        <td></td>
+      </div>
+
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-5">
         <%= image_tag(@bet.equipe2.avatar.url(:thumb))  %>
-      </tr>
-    </table>
+      </div>
+    </div>
+
+    <hr>
 
     <div class="row-fluid">
       <div class="span12 center-align">
