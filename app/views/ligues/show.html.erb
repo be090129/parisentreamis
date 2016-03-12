@@ -1,21 +1,31 @@
-<div class="row center">
-<h1><%= @ligue.name %></h1>
-</div>
+<div class="panel panel-default">
+  <div class="panel-heading center">
+    <h1><%= @ligue.name %></h1>
 
-<div class="row">
-  <div class='col-md-12'>
-    <div class='col-md-2'>
-      <%= link_to 'Retour',tournament_ligues_path(@tournament), class: "btn btn-primary" %>
-    </div>
-    <div class='col-md-2 col-md-offset-6'>
-      <%= link_to 'Classement générale',tournament_ligue_classement_path(@tournament.id, @ligue.id), class: "btn btn-warning" %>
-    </div>
-    <div class='col-md-2'>
-      <%= link_to 'Classement du jour',tournament_ligue_classementday_path(@tournament.id, @ligue.id), class: "btn btn-success" %>
-    </div>
   </div>
 
+  <div class="panel-body">
+
+    <div class="row">
+      <div class='col-md-12'>
+        <div class='col-md-2'>
+          <%= link_to 'Retour',tournament_ligues_path(@tournament), class: "btn btn-primary" %>
+        </div>
+        <div class='col-md-2 col-md-offset-6'>
+          <%= link_to 'Classement générale',tournament_ligue_classement_path(@tournament.id, @ligue.id), class: "btn btn-warning" %>
+        </div>
+        <div class='col-md-2'>
+          <%= link_to 'Classement du jour',tournament_ligue_classementday_path(@tournament.id, @ligue.id), class: "btn btn-success" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div><br />
+
+
+
+
 
 
 <div class="panel panel-default">
@@ -30,9 +40,9 @@
           <% @matchs_du_jour.each do |bet| %>
               <tr>
                 <td><%= bet.start_at.strftime("%d/%m/%Y à %Rh") %></td>
-                <td><%= image_tag(bet.equipe1.avatar.url(:thumb))  %> <%= bet.equipe1.name %> </td>
+                <td><%= image_tag(bet.equipe1.avatar.url(:mini))  %> <%= bet.equipe1.name %> </td>
                 <td>VS</td>
-                <td><%= bet.equipe2.name %> <%= image_tag(bet.equipe2.avatar.url(:thumb))  %></td>
+                <td><%= bet.equipe2.name %> <%= image_tag(bet.equipe2.avatar.url(:mini))  %></td>
                 <td>
                   <% if bet.is_finished%>
                       Match terminé (<%= bet.score_final %>) </br>
@@ -71,9 +81,9 @@
           <% @matchs_a_venir.each do |bet| %>
               <tr>
                 <td><%= bet.start_at.strftime("%d/%m/%Y à %R h") %></td>
-                <td><%= image_tag(bet.equipe1.avatar.url(:thumb))  %> <%= bet.equipe1.name %> </td>
+                <td><%= image_tag(bet.equipe1.avatar.url(:mini))  %> <%= bet.equipe1.name %> </td>
                 <td>VS</td>
-                <td><%= bet.equipe2.name %> <%= image_tag(bet.equipe2.avatar.url(:thumb))  %></td>
+                <td><%= bet.equipe2.name %> <%= image_tag(bet.equipe2.avatar.url(:mini))  %></td>
                 <td>
                   <% if bet.is_finished%>
                       Match terminé (<%= bet.score_final %>) </br>
