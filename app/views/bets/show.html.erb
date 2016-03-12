@@ -14,12 +14,12 @@
       <tr>
         <td><h2><%=@bet.equipe1.name%></h2></td>
         <td></td>
-        <td><h2><%= @bet.equipe2.name%></h2></td>
+        <%= image_tag(@bet.equipe1.avatar.url(:thumb))  %>
       </tr>
       <tr>
-        <td><h2><%=@bet.equipe1.name%></h2></td>
+        <td><h2><%=@bet.equipe2.name%></h2></td>
         <td></td>
-        <td><h2><%= @bet.equipe2.name%></h2></td>
+        <%= image_tag(@bet.equipe2.avatar.url(:thumb))  %>
       </tr>
     </table>
 
