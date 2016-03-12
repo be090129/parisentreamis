@@ -30,9 +30,9 @@
           <% @matchs_du_jour.each do |bet| %>
               <tr>
                 <td><%= bet.start_at.strftime("%d/%m/%Y à %Rh") %></td>
-                <td><%= bet.equipe1.name %></td>
+                <td><%= bet.equipe1.name %> <%= image_tag(team.avatar.url(:thumb))  %></td>
                 <td>VS</td>
-                <td><%= bet.equipe2.name %></td>
+                <td><%= bet.equipe2.name %> <%= image_tag(team.avatar.url(:thumb))  %></td>
                 <td>
                   <% if bet.is_finished%>
                       Match terminé (<%= bet.score_final %>) </br>
