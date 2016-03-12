@@ -36,8 +36,8 @@ class LiguesController < ApplicationController
 
 
   def index
-    @ligues = Ligue.all
     @tournament = Tournament.find(params[:tournament_id])
+    @ligues = @tournament.ligues
   end
 
 
