@@ -6,9 +6,9 @@ class Team < ActiveRecord::Base
   has_many :bets
 
   has_attached_file :avatar, styles: {
-      thumb: '40x100>',
-      square: '80x200#',
-      medium: '160x400>'
+      thumb: '100x60>',
+      square: '200x120>',
+      medium: '400x240>'
   }
 
   # Validate the attached image is image/jpg, image/png, etc
