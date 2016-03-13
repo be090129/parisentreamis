@@ -1,7 +1,7 @@
 class Pronostic < ActiveRecord::Base
   belongs_to :user
-  belongs_to :bet, dependent: :destroy
-  belongs_to :ligue, dependent: :destroy
+  belongs_to :bet
+  belongs_to :ligue
 
   validates :score1,:score2,:bet_id, :presence => true
   validates_numericality_of :score1,:score2, :only_integer => true, :greater_than_or_equal_to => 0
