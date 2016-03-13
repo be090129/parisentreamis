@@ -3,7 +3,11 @@
     <h1><%= link_to 'Retour',tournament_ligue_path(@tournament.id, @ligue.id), class: "btn btn-primary" %> Classement du <%=DateTime.now.strftime("%d/%m/%Y")%> de la ligue <%= @ligue.name %></h1>
   </div>
   <div class="panel-body">
-    <table class="table table-striped" >
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+
+          <table class="table table-striped" >
       <thead>
       <tr>
         <th>Pronostiqueur</th>
@@ -20,6 +24,9 @@
       <% end %>
       </tbody>
     </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

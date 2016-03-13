@@ -1,55 +1,69 @@
-<div class="row">
-  <div class='col-md-2'>
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
     <%= link_to 'Créer une ligue', new_tournament_ligue_path, class: "btn btn-primary" %>
   </div>
-</div><br />
 
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Ligue</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ligues.each do |ligue| %>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+      <thead>
       <tr>
-        <td><%= ligue.name %></td>
-        <% if user_signed_in? && current_user.id == ligue.owner_id %>
-            <td><%= link_to "PARTICIPEZ",
-                            tournament_ligue_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
-            <td><%= link_to "GEREZ VOTRE LIGUE",
-                            edit_tournament_ligue_path(ligue.tournament_id,ligue) , :class => 'btn btn-warning btn-mediumlarge' %></td>
-            <td><%= link_to "EFFACEZ VOTRE LIGUE",
-                            tournament_ligue_path(ligue.tournament_id, ligue), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary btn-mediumlarge' %></td>
-        <%else%>
-            <% if user_signed_in? %>
-                <% if current_user.ligues.include?(ligue)  %>
-                    <% ligue.members.each do |member| %>
-                        <% if member.user_id == current_user.id %>
-                            <% if member.status == "Admis" %>
-                                <td><%= link_to "PARTICIPEZ",
-                                                tournament_ligue_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
-                            <%elsif member.status == "Pending" %>
-                                <td>En attente</td>
-                            <%else %>
-                                <td>Refusée</td>
+        <th>Ligue</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @ligues.each do |ligue| %>
+          <tr>
+            <td><%= ligue.name %></td>
+            <% if user_signed_in? && current_user.id == ligue.owner_id %>
+                <td><%= link_to "PARTICIPEZ",
+                                tournament_ligue_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
+                <td><%= link_to "GEREZ VOTRE LIGUE",
+                                edit_tournament_ligue_path(ligue.tournament_id,ligue) , :class => 'btn btn-warning btn-mediumlarge' %></td>
+                <td><%= link_to "EFFACEZ VOTRE LIGUE",
+                                tournament_ligue_path(ligue.tournament_id, ligue), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary btn-mediumlarge' %></td>
+            <%else%>
+                <% if user_signed_in? %>
+                    <% if current_user.ligues.include?(ligue)  %>
+                        <% ligue.members.each do |member| %>
+                            <% if member.user_id == current_user.id %>
+                                <% if member.status == "Admis" %>
+                                    <td><%= link_to "PARTICIPEZ",
+                                                    tournament_ligue_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-success btn-mediumlarge' %></td>
+                                <%elsif member.status == "Pending" %>
+                                    <td>En attente</td>
+                                <%else %>
+                                    <td>Refusée</td>
+                                <%end%>
                             <%end%>
                         <%end%>
-                    <%end%>
-                    <td></td>
-                    <td></td>
-                <% else %>
-                    <td><%= link_to "ADHEREZ A CETTE LIGUE",
+                        <td></td>
+                        <td></td>
+                    <% else %>
+                        <td><%= link_to "ADHEREZ A CETTE LIGUE",
                                         new_tournament_ligue_member_path(ligue.tournament_id, ligue.id) , :class => 'btn btn-info btn-mediumlarge' %></td>
-                    <td></td>
-                    <td></td>
+                        <td></td>
+                        <td></td>
+                    <% end %>
                 <% end %>
-            <% end %>
-        <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <%end%>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

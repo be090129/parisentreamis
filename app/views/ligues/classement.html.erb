@@ -3,11 +3,14 @@
       <h1><%= link_to 'Retour',tournament_ligue_path(@tournament.id, @ligue.id), class: "btn btn-primary" %> Classement général de la ligue <%= @ligue.name %></h1>
   </div>
   <div class="panel-body">
-    <table class="table table-striped" >
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped" >
       <thead>
       <tr>
         <th>Pronostiqueur</th>
-        <th class="center">Nombre de points</th>
+        <th class="center">Points</th>
         <th class="center">Pronostic(s) gagné(s)</th>
         <th class="center">Pronostic(s) perdu(s)</th>
 
@@ -26,6 +29,9 @@
       <% end %>
       </tbody>
     </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

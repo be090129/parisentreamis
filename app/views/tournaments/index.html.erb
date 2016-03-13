@@ -1,23 +1,29 @@
 <h1>Listing tournaments</h1>
 
-<table class="table table-striped">
-  <tbody>
-    <% @tournaments.each do |tournament| %>
-      <tr>
-        <td><h5><b><%= tournament.name %></b></h5></td>
-        <td> <%= link_to "REJOINDRE UNE LIGUE",
-                         tournament_ligues_path(tournament), :class => 'btn btn-success btn-mediumlarge' %></td>
-        <td> <%= link_to "CREER UNE LIGUE",
-                         new_tournament_ligue_path(tournament), :class => 'btn btn-warning btn-mediumlarge' %></td>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <% @tournaments.each do |tournament| %>
+            <tr>
+              <td><h5><b><%= tournament.name %></b></h5></td>
+              <td> <%= link_to "REJOINDRE UNE LIGUE",
+                               tournament_ligues_path(tournament), :class => 'btn btn-success btn-mediumlarge' %></td>
+              <td> <%= link_to "CREER UNE LIGUE",
+                               new_tournament_ligue_path(tournament), :class => 'btn btn-warning btn-mediumlarge' %></td>
 
-        <% if current_user && current_user.is_admin %>
-          <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-          <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <% if current_user && current_user.is_admin %>
+                <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+                <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <%end%>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <br>
 

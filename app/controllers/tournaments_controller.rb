@@ -69,7 +69,7 @@ class TournamentsController < ApplicationController
                             member.pwin = member.pwin + 1
                             member.save
                           end
-                        elsif !p.win && !p.global_win?
+                        else
                           member = Member.where('user_id = ?', p.user_id).first
                           if member
                             member.ploose = member.ploose + 1

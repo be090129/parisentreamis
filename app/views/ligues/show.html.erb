@@ -35,7 +35,10 @@
 
   <div class="panel-body">
     <% if (!@matchs_du_jour.blank?) %>
-        <table class="table table-striped">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
           <tbody>
           <% @matchs_du_jour.each do |bet| %>
               <tr>
@@ -63,7 +66,10 @@
           <% end %>
           </tbody>
         </table>
-    <%else %>
+            </div>
+          </div>
+        </div>
+  <%else %>
         Aujourd'hui il n'y a pas de match !
     <% end %>
   </div>
@@ -76,7 +82,10 @@
 
   <div class="panel-body">
     <% if (!@matchs_a_venir.blank?) %>
-        <table class="table table-striped">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
           <tbody>
           <% @matchs_a_venir.each do |bet| %>
               <tr>
@@ -104,6 +113,9 @@
           <% end %>
           </tbody>
         </table>
+            </div>
+          </div>
+        </div>
     <%else %>
         Il n'y a pas de match à venir !
     <% end %>
@@ -117,7 +129,10 @@
 
   <div class="panel-body">
     <% if (!@matchs_termines.blank?) %>
-        <table class="table table-striped">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
           <tbody>
           <% @matchs_termines.each do |bet| %>
               <tr>
@@ -136,6 +151,9 @@
           <% end %>
           </tbody>
         </table>
+            </div>
+          </div>
+        </div>
     <%else %>
         Il n'y a pas de match terminé !
     <% end %>
